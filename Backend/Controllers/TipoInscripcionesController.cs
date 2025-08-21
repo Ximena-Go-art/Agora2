@@ -42,6 +42,16 @@ namespace Backend.Controllers
             return tipoInscripcion;
         }
 
+        // GET: api/Capacitaciones/deleteds  ESTE
+        [HttpGet("deleteds/")]
+
+        public async Task<ActionResult<IEnumerable<Capacitacion>>> GetCapacitacionesDeleteds()
+        {
+            return await _context.Capacitaciones.IgnoreQueryFilters()
+                .Where(c => c.IsDeleted)
+                .ToListAsync();
+        }
+
         // PUT: api/TipoInscripciones/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
@@ -99,7 +109,21 @@ namespace Backend.Controllers
 
             return NoContent();
         }
+        // RESTORE: api/Capacitaciones/restore/5  ESTE
+        [HttpPut("restore/{id}")]
+        public async Task<IActionResult> RestoreCapacitacion(int id)
+        {
+            var capacitacion = await _context.Capacitaciones.IgnoreQueryFilters().FirstOrDefaultAsync(c => c.Id.Equals(id));
+            if (capacitacion == null)
+            {
+                return NotFound();
+            }
+            capacitacion.IsDeleted = false;//Soft Restore
+            _context.Capacitaciones.Update(capacitacion);
+            await _context.SaveChangesAsync();
 
+            return NoContent();
+        }
         private bool TipoInscripcionExists(int id)
         {
             return _context.TipoInscripciones.Any(e => e.Id == id);
