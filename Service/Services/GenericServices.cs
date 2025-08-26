@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http.Json;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -20,9 +21,15 @@ namespace Service.Services
             _options = new JsonSerializerOptions() { PropertyNameCaseInsensitive = true };
             _endpoint = Properties.Resources.UrlApi + ApiEndPoints.GetEndpoint(typeof(T).Name);
         }
-         public Task<T?> AddAsync(T? entity)
+         public async Task<T?> AddAsync(T? entity)
         {
-            throw new NotImplementedException();
+            var response = await _httpClient.PostAsJsonAsync(_endpoint, entity);
+            var content = await response.Content.ReadAsStringAsync();
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new Exception($"Error al agregar el dato: {response.StatusCode} - {content}");
+            }
+            return JsonSerializer.Deserialize<T>(content, _options);
         }
 
         public async Task<bool> DeleteAsync(int id)
@@ -46,9 +53,15 @@ namespace Service.Services
             return JsonSerializer.Deserialize<List<T>>(content, _options);
         }
 
-        public Task<List<T>?> GetAllDeletedsAsync(string? filtro)
+        public async Task<List<T>?> GetAllDeletedsAsync(string? filtro)
         {
-            throw new NotImplementedException();
+            var response = await _httpClient.GetAsync($"{_endpoint}/deleteds");
+            var content = await response.Content.ReadAsStringAsync();
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new Exception($"Error al agregar el dato: {response.StatusCode} - {content}");
+            }
+            return JsonSerializer.Deserialize<List<T>>(content, _options);
         }
 
         public async Task<T?> GetByIdAsync(int id)

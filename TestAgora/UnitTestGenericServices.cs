@@ -103,5 +103,35 @@ namespace TestAgora
 
 
         }
+        [Fact]
+        public async void TestAddTipoInscripcion()
+        {
+            var service = new GenericServices<TipoInscripcion>();
+            var newTipoInscripcion = new TipoInscripcion
+            {
+                Nombre = "Estudiante Instituto"
+            };
+            var result = await service.AddAsync(newTipoInscripcion);
+            Assert.NotNull(result);
+            Assert.IsType<TipoInscripcion>(result);
+            Assert.Equal(newTipoInscripcion.Nombre, result.Nombre);
+            Console.WriteLine($"Id {result.Id}, Nombre {result.Nombre}");
+
+
+        }
+        [Fact]
+        public async void TestDeletedsCapacitaciones()
+        {
+            var service = new GenericServices<Capacitacion>();
+            var result = await service.GetAllDeletedsAsync(null);
+            Assert.NotNull(result);
+            Assert.IsType<List<Capacitacion>>(result);
+            Assert.True(result.Count==1);
+            foreach (var item in result)
+            {
+                Console.WriteLine($"Id: {item.Id}, Nombre: {item.Nombre}");
+            }
+
+        }
     }
 }
