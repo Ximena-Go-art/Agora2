@@ -12,7 +12,7 @@ namespace Backend.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class TiposInscripcionesController : ControllerBase
+    public  class TiposInscripcionesController : ControllerBase
     {
         private readonly AgoraContext _context;
 

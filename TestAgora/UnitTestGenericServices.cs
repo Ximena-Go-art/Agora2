@@ -95,7 +95,9 @@ namespace TestAgora
         [Fact]
         public async void TestDeleteInscripciones()
         {
+            //arrange
             var service = new GenericServices<Inscripcion>();
+            //act
             var idToDelete = 5;
             var result = await service.DeleteAsync(idToDelete);
             Assert.True(result);
@@ -122,8 +124,11 @@ namespace TestAgora
         [Fact]
         public async void TestDeletedsCapacitaciones()
         {
+            //arrange: construccion del contecto
             var service = new GenericServices<Capacitacion>();
+            //act: accion que queremos testear
             var result = await service.GetAllDeletedsAsync(null);
+            //Assert: el resultado sea lo esperado.
             Assert.NotNull(result);
             Assert.IsType<List<Capacitacion>>(result);
             Assert.True(result.Count==1);
@@ -132,6 +137,22 @@ namespace TestAgora
                 Console.WriteLine($"Id: {item.Id}, Nombre: {item.Nombre}");
             }
 
+        }
+        [Fact]
+        public async void TestUpdateTipoInscripcion()
+        {
+            //arrange
+            var service = new GenericServices<TipoInscripcion>();
+            var TipoInscripcionAModificar = new TipoInscripcion()
+            {
+                Id = 2,
+                Nombre = "Docente Instituto"
+            };
+            //action
+            var result = await service.UpdateAsync(TipoInscripcionAModificar);
+            //
+            Assert.NotNull(result);
+            Assert.True(result);
         }
     }
 }
