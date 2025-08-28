@@ -1,4 +1,5 @@
-﻿using Service.Services.NewFolder;
+﻿using Service.Interfaces;
+using Service.Services.NewFolder;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Service.Services
 {
-    public class GenericServices<T> : IGenericServices<T> where T : class
+    public class GenericServices<T> : IGenericService<T> where T : class
     {
         private readonly HttpClient _httpClient;
         protected readonly JsonSerializerOptions _options;
