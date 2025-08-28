@@ -3,6 +3,7 @@ using Service.Services;
 using System.Threading.Tasks;
 using Service.Models;
 using Service.Services;
+using Service.Interfaces;
 
 namespace TestAgora
 {
@@ -153,6 +154,18 @@ namespace TestAgora
             //
             Assert.NotNull(result);
             Assert.True(result);
+        }
+        [Fact]
+        public async void TestRestoreCapacitacion()
+        {
+            // Arrange
+            var service = new GenericServices <Capacitacion>();
+            int idToRestore = 3; // Asumiendo que este ID existe en la base de datos
+                                 // Act
+            var result = await service.RestoreAsync(idToRestore);
+            // Assert
+            Assert.True(result);
+            Console.WriteLine($"Capacitacion con Id {idToRestore} restaurada exitosamente.");
         }
     }
 }
