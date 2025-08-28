@@ -28,7 +28,7 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowSpecificOrigins",
         builder => builder
-            .WithOrigins("https://localhost:8000", "https://agora2-cwcmc3fre4g6c2en.canadacentral-01.azurewebsites.ne")
+            .WithOrigins("https://localhost:8000", "https://agora2-cwcmc3fre4g6c2en.canadacentral-01.azurewebsites.net")
             .AllowAnyHeader()
             .AllowAnyMethod());
 });
