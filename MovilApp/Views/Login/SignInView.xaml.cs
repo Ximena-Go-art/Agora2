@@ -1,6 +1,6 @@
 namespace MovilApp.Views.Login;
 
-public partial class SignInView : ContentView
+public partial class SignInView : ContentPage
 {
 	public SignInView()
 	{

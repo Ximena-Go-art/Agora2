@@ -87,7 +87,7 @@
 	  <MauiXaml Update="ContentViews\FlyoutFooter.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Pages\AgoraShell.xaml">
+	  <MauiXaml Update="Views\AgoraShell.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\Login\LoginView.xaml">

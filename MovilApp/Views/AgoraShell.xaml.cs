@@ -1,11 +1,12 @@
-using MovilApp.ViewModels.Login;
+using MovilApp.ViewModels;
+using MovilApp.Views.Login;
+using Microsoft.Maui.Controls;
 
 
-namespace MovilApp.Views.Login;
+namespace MovilApp.Views;
 
 public partial class AgoraShell : Shell
 {
-
     public AgoraShell()
     {
         InitializeComponent();
@@ -15,7 +16,7 @@ public partial class AgoraShell : Shell
 
     private void RegisterRoutes()
     {
-        Routing.RegisterRoute("Registrarse", typeof(SiginView));
+        Routing.RegisterRoute("Registrarse", typeof(SignInView));
     }
 
     public void EnableAppAfterLogin()

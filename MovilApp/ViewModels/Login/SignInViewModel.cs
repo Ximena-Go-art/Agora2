@@ -4,7 +4,7 @@ using Firebase.Auth;
 using Firebase.Auth.Providers;
 using System.Net.Http.Headers;
 
-namespace AgoraApp.ViewModels.Sigin
+namespace AgoraApp.ViewModels.SignIn
 {
     public partial class SignInViewModel : ObservableObject
     {
