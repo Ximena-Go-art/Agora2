@@ -4,8 +4,8 @@ using Firebase.Auth;
 using Firebase.Auth.Providers;
 using System.Net.Http.Headers;
 
-namespace AgoraApp.ViewModels.SignIn
-{
+namespace AgoraApp.ViewModels.LogIn;
+
     public partial class SignInViewModel : ObservableObject
     {
         private readonly FirebaseAuthClient _clientAuth;
@@ -84,4 +84,3 @@ namespace AgoraApp.ViewModels.SignIn
             }
         }
     }
-}
