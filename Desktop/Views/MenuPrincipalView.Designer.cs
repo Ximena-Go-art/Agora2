@@ -38,6 +38,7 @@
             toolTip2 = new ToolTip(components);
             toolTip3 = new ToolTip(components);
             toolStrip1 = new ToolStrip();
+            SubMenuCapacitaciones = new ToolStripMenuItem();
             MenuPrincipal.SuspendLayout();
             SuspendLayout();
             // 
@@ -53,7 +54,7 @@
             // 
             // SubMenuPrincipal
             // 
-            SubMenuPrincipal.DropDownItems.AddRange(new ToolStripItem[] { SubMenuUsuarios });
+            SubMenuPrincipal.DropDownItems.AddRange(new ToolStripItem[] { SubMenuUsuarios, SubMenuCapacitaciones });
             SubMenuPrincipal.IconChar = FontAwesome.Sharp.IconChar.HomeLg;
             SubMenuPrincipal.IconColor = Color.Black;
             SubMenuPrincipal.IconFont = FontAwesome.Sharp.IconFont.Auto;
@@ -91,6 +92,13 @@
             toolStrip1.TabIndex = 2;
             toolStrip1.Text = "toolStrip1";
             // 
+            // SubMenuCapacitaciones
+            // 
+            SubMenuCapacitaciones.Name = "SubMenuCapacitaciones";
+            SubMenuCapacitaciones.Size = new Size(224, 26);
+            SubMenuCapacitaciones.Text = "Capacitaciones";
+            SubMenuCapacitaciones.Click += SubMenuCapacitaciones_Click;
+            // 
             // MenuPrincipalView
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -120,5 +128,6 @@
         private ToolStripMenuItem SubMenuSalir;
         private ToolStripMenuItem SubMenuSalirDelSistema;
         private ToolStripMenuItem SubMenuUsuarios;
+        private ToolStripMenuItem SubMenuCapacitaciones;
     }
 }

@@ -43,7 +43,7 @@ namespace Service.Services
             return response.IsSuccessStatusCode;
         }
 
-        public async Task<List<T>?> GetAllAsync(string? filtro)
+        public async Task<List<T>?> GetAllAsync(string? filtro="")
         {
             var response = await _httpClient.GetAsync(_endpoint);
             var content = await response.Content.ReadAsStringAsync();
