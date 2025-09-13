@@ -79,7 +79,7 @@ namespace Service.Properties {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a https://agora2-cwcmc3fre4g6c2en.canadacentral-01.azurewebsites.net/api/.
+        ///   Busca una cadena traducida similar a https://apiagoraxime.azurewebsites.net/api/.
         /// </summary>
         public static string UrlApi {
             get {
@@ -88,7 +88,7 @@ namespace Service.Properties {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a https://localhost:7000.
+        ///   Busca una cadena traducida similar a https://localhost:7000/api/.
         /// </summary>
         public static string UrlApiLocal {
             get {
