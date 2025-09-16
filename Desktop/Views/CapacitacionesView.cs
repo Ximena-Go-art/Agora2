@@ -15,28 +15,36 @@ namespace Desktop.Views
 {
     public partial class CapacitacionesView : Form
     {
-        GenericServices<Capacitacion>_capacitacionService = new GenericServices<Capacitacion>();
+        GenericServices<Capacitacion> _capacitacionService = new GenericServices<Capacitacion>();
         Capacitacion _currentCapacitacion;
         List<Capacitacion>? _capacitaciones;
 
         public CapacitacionesView()
         {
             InitializeComponent();
-            _=GetAllData();
+            _ = GetAllData();
         }
         private async Task GetAllData()
         {
-            _capacitaciones = await _capacitacionService.GetAllAsync();
+            if (checkVerEliminados.Checked)
+            {
+                _capacitaciones = await _capacitacionService.GetAllDeletedsAsync("");
+            }
+            else
+            {
+                _capacitaciones = await _capacitacionService.GetAllAsync();
+            }
             GridCapacitaciones.DataSource = _capacitaciones;
-             GridCapacitaciones.Columns["id"].Visible = false;
+            GridCapacitaciones.Columns["id"].Visible = false;
             GridCapacitaciones.Columns["IsDeleted"].Visible = false;
+
         }
         private void GridPeliculas_SelectionChanged_1(object sender, EventArgs e)
         {
             if (GridCapacitaciones.RowCount > 0 && GridCapacitaciones.SelectedRows.Count > 0)
             {
-                /*Pelicula peliSeleccionada = (Pelicula)GridPeliculas.SelectedRows[0].DataBoundItem;
-                FilmPicture.ImageLocation = peliSeleccionada.portada;*/
+                //Capacitacion capacitacionSeleccionada = (Capacitacion)GridCapacitaciones.SelectedRows[0].DataBoundItem;
+                //FilmPicture.ImageLocation = peliSeleccionada.portada;
             }
         }
 
@@ -47,23 +55,23 @@ namespace Desktop.Views
             {
                 Capacitacion entitySelected = (Capacitacion)GridCapacitaciones.SelectedRows[0].DataBoundItem;
                 var respuesta = MessageBox.Show($"¿Seguro que desea eliminar la capacitacion {entitySelected.Nombre}?", "Confirmar Eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (respuesta == DialogResult.Yes)
+                if (respuesta == DialogResult.Yes)//en lo posible poner dentro de un try/catch
                 {
                     if (await _capacitacionService.DeleteAsync(entitySelected.Id))
                     {
-                        LabelStatusMessage.Text = $"Pelicula {entitySelected.Nombre} eliminada correctamente";
+                        LabelStatusMessage.Text = $"Capacitación {entitySelected.Nombre} eliminada correctamente";
                         TimerStatusBar.Start(); // Iniciar el temporizador para mostrar el mensaje en la barra de estado
                         await GetAllData();
                     }
                     else
                     {
-                        MessageBox.Show("Error al eliminar la capcitacion", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Error al eliminar la capcitación", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
             }
             else
             {
-                MessageBox.Show("Debe seleccionar una capacitacion para eliminarla", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Debe seleccionar una capacitación para eliminarla", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -166,6 +174,40 @@ namespace Desktop.Views
         {
             LabelStatusMessage.Text = string.Empty;
             TimerStatusBar.Stop(); // Detener el temporizador después de mostrar el mensaje
+        }
+
+        private async void checkVerEliminados_CheckedChanged(object sender, EventArgs e)
+        {
+            await GetAllData();
+        }
+
+        private async void BtnRestaurar_Click(object sender, EventArgs e)
+
+        { if (!checkVerEliminados.Checked)return;
+
+            if (GridCapacitaciones.RowCount > 0 && GridCapacitaciones.SelectedRows.Count > 0)
+            {
+                Capacitacion entitySelected = (Capacitacion)GridCapacitaciones.SelectedRows[0].DataBoundItem;
+                var respuesta = MessageBox.Show($"¿Seguro que desea restaurar la capacitacion {entitySelected.Nombre}?", "Confirmar Restauración", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (respuesta == DialogResult.Yes)//en lo posible poner dentro de un try/catch
+                {
+                    if (await _capacitacionService.RestoreAsync(entitySelected.Id))
+                    {
+                        LabelStatusMessage.Text = $"Capacitación {entitySelected.Nombre} restaurada correctamente";
+                        TimerStatusBar.Start(); // Iniciar el temporizador para mostrar el mensaje en la barra de estado
+                        await GetAllData();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Error al restaurar la capcitación", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Debe seleccionar una capacitación para restaurarla", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+         
         }
     }
 }

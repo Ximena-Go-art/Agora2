@@ -25,7 +25,8 @@ namespace Backend.DataContext
                 new TipoInscripcion { Id = 1, Nombre = "Público en general" },
                 new TipoInscripcion { Id = 2, Nombre = "Docentes" },
                 new TipoInscripcion { Id = 3, Nombre = "Estudiantes" },
-                new TipoInscripcion { Id = 4, Nombre = "Jubilados" }
+                new TipoInscripcion { Id = 4, Nombre = "Jubilados" },
+                new TipoInscripcion { Id = 5, Nombre = "Tecnicos" }
             );
 
             //cargamos los datos iniciales de usuarios
