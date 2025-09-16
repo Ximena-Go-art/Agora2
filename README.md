@@ -1,23 +1,23 @@
-# ??? Ágora — Plataforma de Gestión de Capacitaciones
+# Ãgora â€” Plataforma de GestiÃ³n de Capacitaciones
 
-![Estado](https://img.shields.io/badge/estado-en%20desarrollo-yellow) ![Versión](https://img.shields.io/badge/version-0.1.0-blue) ![Hecho por](https://img.shields.io/badge/2do%20Año-Programación-4CAF50)
+![Estado](https://img.shields.io/badge/estado-en%20desarrollo-yellow) ![VersiÃ³n](https://img.shields.io/badge/version-0.1.0-blue) ![Hecho por](https://img.shields.io/badge/2do%20AÃ±o-ProgramaciÃ³n-4CAF50)
 
-Ágora es un proyecto educativo desarrollado junto a estudiantes de 2.º año de Programación. Su objetivo es brindar una plataforma integral para gestionar **capacitaciones** de una institución educativa: desde la publicación y la inscripción (online/presencial), hasta la **acreditación**, **cobros** y **emisión de certificados**.
-
----
-
-## ?? Objetivo del proyecto
-
-Construir un sistema **claro, ágil y auditable** que permita organizar capacitaciones y sus participantes, ofreciendo:
-
-* Un **flujo simple** de inscripción (para público general, docentes y alumnos).
-* **Control de cupos**, **costos diferenciados** por tipo de inscripción y **habilitación/deshabilitación** de inscripciones.
-* **Acreditación de asistencia** y **registro de pagos** con reportes e **impresión de certificados** (individual y masiva).
-* **Reportes operativos** para mesa de acreditación y administración.
+Ãgora es un proyecto educativo desarrollado junto a estudiantes de 2.Âº aÃ±o de ProgramaciÃ³n. Su objetivo es brindar una plataforma integral para gestionar **capacitaciones** de una instituciÃ³n educativa: desde la publicaciÃ³n y la inscripciÃ³n (online/presencial), hasta la **acreditaciÃ³n**, **cobros** y **emisiÃ³n de certificados**.
 
 ---
 
-## ??? Índice
+##  Objetivo del proyecto
+
+Construir un sistema **claro, Ã¡gil y auditable** que permita organizar capacitaciones y sus participantes, ofreciendo:
+
+* Un **flujo simple** de inscripciÃ³n (para pÃºblico general, docentes y alumnos).
+* **Control de cupos**, **costos diferenciados** por tipo de inscripciÃ³n y **habilitaciÃ³n/deshabilitaciÃ³n** de inscripciones.
+* **AcreditaciÃ³n de asistencia** y **registro de pagos** con reportes e **impresiÃ³n de certificados** (individual y masiva).
+* **Reportes operativos** para mesa de acreditaciÃ³n y administraciÃ³n.
+
+---
+
+## Ãndice
 
 * [Objetivo del proyecto](#-objetivo-del-proyecto)
 * [Alcance y funcionalidades](#-alcance-y-funcionalidades)
@@ -27,141 +27,141 @@ Construir un sistema **claro, ágil y auditable** que permita organizar capacitac
 * [Reportes e impresiones](#-reportes-e-impresiones)
 * [Hoja de ruta (Roadmap)](#-hoja-de-ruta-roadmap)
 * [Estructura del repositorio (sugerida)](#-estructura-del-repositorio-sugerida)
-* [Cómo contribuir](#-cómo-contribuir)
+* [CÃ³mo contribuir](#-cÃ³mo-contribuir)
 * [Licencia](#-licencia)
 
 ---
 
-## ? Alcance y funcionalidades
+##  Alcance y funcionalidades
 
-A continuación se detallan los **requerimientos funcionales** priorizados para la primera versión:
+A continuaciÃ³n se detallan los **requerimientos funcionales** priorizados para la primera versiÃ³n:
 
-1. ?? **Capacitaciones**
+1.  **Capacitaciones**
 
-   * Alta, modificación y eliminación de **capacitaciones**.
-   * Habilitar/Deshabilitar la **inscripción** por capacitación.
-   * Definir **cupo máximo**.
-   * Definir **costos** por tipo de inscripción: público general, docentes y alumnos.
+   * Alta, modificaciÃ³n y eliminaciÃ³n de **capacitaciones**.
+   * Habilitar/Deshabilitar la **inscripciÃ³n** por capacitaciÃ³n.
+   * Definir **cupo mÃ¡ximo**.
+   * Definir **costos** por tipo de inscripciÃ³n: pÃºblico general, docentes y alumnos.
 
-2. ?? **Usuarios**
+2.  **Usuarios**
 
-   * Alta, modificación y eliminación de **usuarios**.
+   * Alta, modificaciÃ³n y eliminaciÃ³n de **usuarios**.
 
-3. ?? **Inscripción online**
+3.  **InscripciÃ³n online**
 
-   * Inscribirse a una capacitación disponible.
-   * La inscripción se **desactiva automáticamente** al completar el **cupo máximo**.
-   * *(Futuro)* Carga de **comprobante de transferencia** para acreditar pago; validación por un usuario autorizado.
+   * Inscribirse a una capacitaciÃ³n disponible.
+   * La inscripciÃ³n se **desactiva automÃ¡ticamente** al completar el **cupo mÃ¡ximo**.
+   * *(Futuro)* Carga de **comprobante de transferencia** para acreditar pago; validaciÃ³n por un usuario autorizado.
 
-4. ?? **Inscripción presencial**
+4.  **InscripciÃ³n presencial**
 
    * Registro manual por personal autorizado.
 
-5. ? **Acreditación de asistencia**
+5.  **AcreditaciÃ³n de asistencia**
 
    * Marcado de asistencia para cada inscripto.
 
-6. ?? **Certificados**
+6.  **Certificados**
 
-   * Impresión de certificados para acreditados que abonaron (si aplica).
-   * **Impresión masiva** por capacitación e **individual** por asistente.
-   * Si la capacitación **no tiene costo**, se imprime a todo **acreditado**.
+   * ImpresiÃ³n de certificados para acreditados que abonaron (si aplica).
+   * **ImpresiÃ³n masiva** por capacitaciÃ³n e **individual** por asistente.
+   * Si la capacitaciÃ³n **no tiene costo**, se imprime a todo **acreditado**.
    * Rol **administrativo** puede **imprimir a todos** (pago contra entrega).
 
-7. ?? **Pagos**
+7.  **Pagos**
 
-   * Pantalla específica para **registración de pagos** (monto, medio, fecha, observaciones).
+   * Pantalla especÃ­fica para **registraciÃ³n de pagos** (monto, medio, fecha, observaciones).
 
 8. ?? **Listado de inscriptos**
 
-   * **Impresión** de inscriptos por capacitación (para mesa de acreditación manual).
+   * **ImpresiÃ³n** de inscriptos por capacitaciÃ³n (para mesa de acreditaciÃ³n manual).
 
-9. ?? **Listado de acreditados**
+9.  **Listado de acreditados**
 
-   * **Impresión** con detalle de **si pagaron** y **forma de pago**.
+   * **ImpresiÃ³n** con detalle de **si pagaron** y **forma de pago**.
 
-10. ?? **Reporte de cobros**
+10.  **Reporte de cobros**
 
-    * **Impresión** de cobros por usuario y por capacitación, con **detalle y totales** por forma de pago.
+    * **ImpresiÃ³n** de cobros por usuario y por capacitaciÃ³n, con **detalle y totales** por forma de pago.
 
 ---
 
-## ???????? Roles y reglas generales
+##  Roles y reglas generales
 
-* **Público en general / Docente / Alumno:** puede **inscribirse** online cuando esté habilitado y existan cupos.
+* **PÃºblico en general / Docente / Alumno:** puede **inscribirse** online cuando estÃ© habilitado y existan cupos.
 * **Administrativo:** puede **gestionar inscripciones presenciales**, **registrar pagos**, **acreditar asistencia** y **emitir certificados** (individual/masivo).
 * **Reglas destacadas:**
 
-  * La **inscripción** depende de **habilitación** y **cupo**.
-  * La **emisión de certificados** requiere **asistencia acreditada** y, si corresponde, **pago registrado**.
+  * La **inscripciÃ³n** depende de **habilitaciÃ³n** y **cupo**.
+  * La **emisiÃ³n de certificados** requiere **asistencia acreditada** y, si corresponde, **pago registrado**.
 
 ---
 
-## ?? Flujos principales
+##  Flujos principales
 
-1. **Publicar capacitación**
+1. **Publicar capacitaciÃ³n**
 
-   1. Crear capacitación ? 2) Definir cupo y costos ? 3) Habilitar inscripciones.
+   1. Crear capacitaciÃ³n ? 2) Definir cupo y costos ? 3) Habilitar inscripciones.
 
-2. **Inscripción online**
+2. **InscripciÃ³n online**
 
-   1. Usuario elige capacitación ? 2) Completa datos ? 3) Sistema valida cupo ? 4) Registro de inscripción.
+   1. Usuario elige capacitaciÃ³n ? 2) Completa datos ? 3) Sistema valida cupo ? 4) Registro de inscripciÃ³n.
 
-3. **Inscripción presencial**
+3. **InscripciÃ³n presencial**
 
-   1. Administrativo busca o crea usuario ? 2) Registra inscripción ? 3) Entrega comprobante.
+   1. Administrativo busca o crea usuario ? 2) Registra inscripciÃ³n ? 3) Entrega comprobante.
 
-4. **Acreditación de asistencia**
+4. **AcreditaciÃ³n de asistencia**
 
-   1. Lista de inscriptos ? 2) Marcar presente/ausente ? 3) Guardar acreditación.
+   1. Lista de inscriptos ? 2) Marcar presente/ausente ? 3) Guardar acreditaciÃ³n.
 
 5. **Registro de pagos**
 
-   1. Seleccionar inscripto ? 2) Registrar medio/monto/fecha ? 3) Asociar a capacitación.
+   1. Seleccionar inscripto ? 2) Registrar medio/monto/fecha ? 3) Asociar a capacitaciÃ³n.
 
-6. **Emisión de certificados**
+6. **EmisiÃ³n de certificados**
 
    * **Individual**: verificar requisitos ? generar e imprimir.
-   * **Masivo**: filtrar por capacitación ? validar requisitos ? imprimir lote.
+   * **Masivo**: filtrar por capacitaciÃ³n ? validar requisitos ? imprimir lote.
 
 ---
 
-## ?? Entidades clave
+##  Entidades clave
 
-| Entidad          | Descripción breve                                                                                                   |
+| Entidad          | DescripciÃ³n breve                                                                                                   |
 | ---------------- | ------------------------------------------------------------------------------------------------------------------- |
-| **Capacitación** | Título, descripción, fechas, **cupo máximo**, estado de inscripción (habilitada/inhabilitada), **costos por tipo**. |
-| **Usuario**      | Datos personales, tipo: **público**, **docente**, **alumno**, **administrativo**.                                   |
-| **Inscripción**  | Usuario ? Capacitación, estado (activa/cancelada), origen (**online/presencial**).                                  |
+| **CapacitaciÃ³n** | TÃ­tulo, descripciÃ³n, fechas, **cupo mÃ¡ximo**, estado de inscripciÃ³n (habilitada/inhabilitada), **costos por tipo**. |
+| **Usuario**      | Datos personales, tipo: **pÃºblico**, **docente**, **alumno**, **administrativo**.                                   |
+| **InscripciÃ³n**  | Usuario ? CapacitaciÃ³n, estado (activa/cancelada), origen (**online/presencial**).                                  |
 | **Asistencia**   | Registro por inscrito (acreditado / no acreditado).                                                                 |
-| **Pago**         | Monto, **forma de pago**, fecha, referencia (comprobante), vinculado a Inscripción/Capacitación.                    |
-| **Certificado**  | Emisión individual/masiva para **acreditados** (y con pago si corresponde).                                         |
+| **Pago**         | Monto, **forma de pago**, fecha, referencia (comprobante), vinculado a InscripciÃ³n/CapacitaciÃ³n.                    |
+| **Certificado**  | EmisiÃ³n individual/masiva para **acreditados** (y con pago si corresponde).                                         |
 
 ---
 
-## ??? Reportes e impresiones
+##  Reportes e impresiones
 
-* **Inscriptos por capacitación** (para mesa de acreditación).
-* **Acreditados por capacitación** con estado de pago y forma de pago.
-* **Cobros** por usuario y capacitación, con **detalles y totales** por forma de pago.
-* **Certificados**: emisión **individual** y **masiva**.
+* **Inscriptos por capacitaciÃ³n** (para mesa de acreditaciÃ³n).
+* **Acreditados por capacitaciÃ³n** con estado de pago y forma de pago.
+* **Cobros** por usuario y capacitaciÃ³n, con **detalles y totales** por forma de pago.
+* **Certificados**: emisiÃ³n **individual** y **masiva**.
 
 ---
 
-## ??? Hoja de ruta (Roadmap)
+##  Hoja de ruta (Roadmap)
 
-* [ ] **MVP**: ABM de capacitaciones y usuarios, inscripción online/presencial, acreditación, pagos, reportes básicos y emisión de certificados.
-* [ ] **Evidencia de pago (3.2)**: carga de imagen de transferencia + circuito de **validación** por administrativo.
-* [ ] **Mejoras UX**: filtros avanzados, búsqueda rápida, exportación a CSV/PDF.
-* [ ] **Permisos granulares** por rol y auditoría de acciones.
+* [ ] **MVP**: ABM de capacitaciones y usuarios, inscripciÃ³n online/presencial, acreditaciÃ³n, pagos, reportes bÃ¡sicos y emisiÃ³n de certificados.
+* [ ] **Evidencia de pago (3.2)**: carga de imagen de transferencia + circuito de **validaciÃ³n** por administrativo.
+* [ ] **Mejoras UX**: filtros avanzados, bÃºsqueda rÃ¡pida, exportaciÃ³n a CSV/PDF.
+* [ ] **Permisos granulares** por rol y auditorÃ­a de acciones.
 * [ ] **Notificaciones** (email/whatsapp) para confirmaciones y recordatorios.
 
 ---
 
-## ?? Estructura del repositorio (sugerida)
+##  Estructura del repositorio (sugerida)
 
 ```
-/docs/                 # Documentación funcional/técnica, decisiones y diagramas
+/docs/                 # DocumentaciÃ³n funcional/tÃ©cnica, decisiones y diagramas
 /frontend/             # App web (por definir stack)
  /...                  
 /backend/              # API/servicios (por definir stack)
@@ -172,31 +172,31 @@ README.md
 LICENSE
 ```
 
-> ?? **Sugerencia didáctica:** mantener en `/docs` la **trazabilidad** entre requerimientos y pantallas/endpoints, y anotar decisiones (ADR) para aprender de la arquitectura del proyecto.
+>  **Sugerencia didÃ¡ctica:** mantener en `/docs` la **trazabilidad** entre requerimientos y pantallas/endpoints, y anotar decisiones (ADR) para aprender de la arquitectura del proyecto.
 
 ---
 
-## ?? Cómo contribuir
+##  CÃ³mo contribuir
 
 1. Crea una rama con el formato `feature/descripcion-corta` o `fix/descripcion-corta`.
-2. Acompaña tus cambios con **descripción clara** y, cuando aplique, **capturas** o **gif**.
-3. Relaciona tu PR con el requerimiento funcional correspondiente (ej.: “RF-6 Certificados”).
-4. Pide **code review** a otro/a compañero/a y a la cátedra antes de mergear.
-5. Mantén el estilo de código consistente y agrega tests cuando sea posible.
+2. AcompaÃ±a tus cambios con **descripciÃ³n clara** y, cuando aplique, **capturas** o **gif**.
+3. Relaciona tu PR con el requerimiento funcional correspondiente (ej.: â€œRF-6 Certificadosâ€).
+4. Pide **code review** a otro/a compaÃ±ero/a y a la cÃ¡tedra antes de mergear.
+5. MantÃ©n el estilo de cÃ³digo consistente y agrega tests cuando sea posible.
 
 ---
 
-## ?? Licencia
+##  Licencia
 
-Este proyecto se distribuye bajo la licencia **MIT** (o la que la cátedra defina). Incluye el archivo `LICENSE` en el repositorio.
-
----
-
-### ?? Contacto
-
-Proyecto **Ágora** — 2.º Año Programación
-Si tenés dudas, sugerencias o encontrás un bug, abrí un **Issue** y describí claramente el caso.
+Este proyecto se distribuye bajo la licencia **MIT** (o la que la cÃ¡tedra defina). Incluye el archivo `LICENSE` en el repositorio.
 
 ---
 
-> *“Lo que no se mide, no se mejora.”* — Ágora prioriza la **claridad operativa** y la **trazabilidad** para que cada decisión y funcionalidad se pueda enseñar, aprender y evolucionar.
+###  Contacto
+
+Proyecto **Ãgora** â€” 2.Âº AÃ±o ProgramaciÃ³n
+Si tenÃ©s dudas, sugerencias o encontrÃ¡s un bug, abrÃ­ un **Issue** y describÃ­ claramente el caso.
+
+---
+
+> *â€œLo que no se mide, no se mejora.â€* â€” Ãgora prioriza la **claridad operativa** y la **trazabilidad** para que cada decisiÃ³n y funcionalidad se pueda enseÃ±ar, aprender y evolucionar.

@@ -24,10 +24,10 @@ jobs:
           dotnet-version: '8.x'
 
       - name: Build with dotnet
-        run: dotnet build --configuration Release
+        run: dotnet build Backend/Backend.csproj --configuration Release
 
       - name: dotnet publish
-        run: dotnet publish -c Release -o "${{env.DOTNET_ROOT}}/myapp"
+        run: dotnet publish Backend/Backend.csproj -c Release -o "${{env.DOTNET_ROOT}}/myapp"
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
@@ -51,9 +51,9 @@ jobs:
       - name: Login to Azure
         uses: azure/login@v2
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_F20432B31104439883A43241AD2D132C }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_BDFF27C6E4DA474A97FEF7C04E667F97 }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_08DFF72DD8E84FBC87E30F76D08EB2FD }}
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_A35FCED7650445C7A99B6734FEBE7FF4 }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_EA12820E245045A8BC9F8EA3194C4F13 }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_4D1C319F86C348D49F3D0294CF6B7000 }}
 
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
@@ -62,4 +62,5 @@ jobs:
           app-name: 'apiagoraxime'
           slot-name: 'Production'
           package: .
+
           
