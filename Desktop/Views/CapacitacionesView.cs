@@ -7,6 +7,7 @@ using System.Linq;
 using System.Net.Http.Json;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 using System.Windows.Forms;
 using Service.Models;
 using Service.Services;
@@ -23,7 +24,19 @@ namespace Desktop.Views
         {
             InitializeComponent();
             _ = GetAllData();
+            checkVerEliminados.CheckedChanged += DisplayHideControslRestoreButton;
         }
+
+        private void DisplayHideControslRestoreButton(object? sender, EventArgs e)
+        {
+            BtnRestaurar.Visible = checkVerEliminados.Checked;
+            TxtBuscar.Enabled = !checkVerEliminados.Checked;//!Marca la inversa de los datos eliminados
+            BtnBuscar.Enabled = !checkVerEliminados.Checked;
+            BtnModificar.Enabled = !checkVerEliminados.Checked;
+            BtnAgregar.Enabled = !checkVerEliminados.Checked;
+            BtnEliminar.Enabled = !checkVerEliminados.Checked;
+        }
+
         private async Task GetAllData()
         {
             if (checkVerEliminados.Checked)
@@ -83,86 +96,88 @@ namespace Desktop.Views
         private void BtnAgregar_Click(object sender, EventArgs e)
         {
             LimpiarControlesAgregarEditar();
-            TabControl.SelectTab("TabPageAgregarEditar");
+            TabControl.SelectedTab = TabPageAgregarEditar;
         }
 
         private void LimpiarControlesAgregarEditar()
         {
-            TxtTitulo.Clear();
-            NumericDuracion.Value = 0;
-            TxtPortada.Clear();
-            NumericCalificacion.Value = 0;
+            TxtNombre.Clear();
+            TxtDetalle.Clear();
+            NumericCupo.Value = 0;
+            TxtPonente.Clear();
+            DateTimeFechaHora.Value = DateTime.Now;
+            CheckInscripcionAbierta.Checked = false;
         }
 
         private void BtnCancelar_Click(object sender, EventArgs e)
         {
-            TabControl.SelectTab("TabPageLista");
+            TabControl.SelectedTab = TabPageLista;
 
         }
 
         private async void BtnGuardar_Click(object sender, EventArgs e)
         {
-            //Pelicula peliculaAGuardar = new Pelicula
-            //{
-            //    id = peliculaModificada?.id??null, 
-            //    titulo = TxtTitulo.Text,
-            //    duracion = (int)NumericDuracion.Value,
-            //    portada = TxtPortada.Text,
-            //    calificacion = (double)NumericCalificacion.Value,
-            //    PaisId = (int)ComboPaises.SelectedIndex,
-            //};
+            Capacitacion CapacitacionAGuardar = new Capacitacion
+            {
+                Id = _currentCapacitacion?.Id ?? 0,
+                Nombre = TxtNombre.Text,
+                Detalle = TxtDetalle.Text,
+                Ponente = TxtPonente.Text,
+                FechaHora = DateTimeFechaHora.Value,
+                Cupo = (int)NumericCupo.Value,//El int estaria realizando una "conversión de tipo".
+                InscripcionAbierta = CheckInscripcionAbierta.Checked
+            };
 
-            //bool response;
-            //if (peliculaModificada != null)
-            //{
-            //    response=await peliculaService.UpdateAsync(peliculaAGuardar);
-            //}
-            //else
-            //{
-            //    response = await peliculaService.AddAsync(peliculaAGuardar);
-            //}
-            //if (response)
-            //{
-            //    peliculaModificada = null; // Reset the modified movie after saving
-            //    LabelStatusMessage.Text = "Pelicula guardada correctamente";
-            //    TimerStatusBar.Start(); // Iniciar el temporizador para mostrar el mensaje en la barra de estado
-            //    ObtenemosPeliculas();
-            //    LimpiarControlesAgregarEditar();
-            //    TabControl.SelectTab("TabPageLista");
-            //}
-            //else
-            //{
-            //    MessageBox.Show("Error al agregar la pelicula", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //}
+            bool response = false;
+            if (_currentCapacitacion != null)
+            {
+                 response = await _capacitacionService.UpdateAsync(CapacitacionAGuardar);
+            }
+            else
+            {
+                var nuevacapacitacion = await _capacitacionService.AddAsync(CapacitacionAGuardar);
+                response = nuevacapacitacion != null;
+            }
+            if (response)
+            {
+                _currentCapacitacion = null; // Reset the modified movie after saving
+                LabelStatusMessage.Text = $"Capacitación {CapacitacionAGuardar.Nombre} guardada correctamente";
+                TimerStatusBar.Start(); // Iniciar el temporizador para mostrar el mensaje en la barra de estado
+                await GetAllData();
+                LimpiarControlesAgregarEditar();
+                TabControl.SelectedTab = TabPageLista;
+            }
+            else
+            {
+                MessageBox.Show("Error al guardar la capacitacón", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void BtnModificar_Click(object sender, EventArgs e)
         {
-            //checheamos que haya peliculas seleccionadas
-            //if (GridPeliculas.RowCount > 0 && GridPeliculas.SelectedRows.Count > 0)
-            //{
-            //    peliculaModificada = (Pelicula)GridPeliculas.SelectedRows[0].DataBoundItem;
-            //    TxtTitulo.Text = peliculaModificada.titulo;
-            //    NumericDuracion.Value = peliculaModificada.duracion;
-            //    TxtPortada.Text = peliculaModificada.portada;
-            //    NumericCalificacion.Value = (decimal)peliculaModificada.calificacion;
-            //    if(peliculaModificada.PaisId != null)  
-            //    {
-            //        ComboPaises.SelectedValue = peliculaModificada.PaisId;
-            //    }
-            //    else 
-            //    {
-            //        ComboPaises.SelectedIndex = -1;
-            //    }
+            //checheamos que haya una capacitacion seleccionadas
+            if (GridCapacitaciones.RowCount > 0 && GridCapacitaciones.SelectedRows.Count > 0)
+            {
+                _currentCapacitacion= (Capacitacion)GridCapacitaciones.SelectedRows[0].DataBoundItem;
+                TxtNombre.Text = _currentCapacitacion.Nombre;
+                NumericCupo.Value = _currentCapacitacion.Cupo;
+                TxtDetalle.Text = _currentCapacitacion.Detalle;
+                TxtPonente.Text = _currentCapacitacion.Ponente;
+                DateTimeFechaHora.Value = _currentCapacitacion.FechaHora;
+                CheckInscripcionAbierta.Checked = _currentCapacitacion.InscripcionAbierta;
 
-            //        TabControl.SelectTab("TabPageAgregarEditar");
-            //}
+                TabControl.SelectedTab = TabPageAgregarEditar;
+            }
+            else
+            {
+              MessageBox.Show("Debe seleccionar una capacitación para modificarla", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void BtnBuscar_Click(object sender, EventArgs e)
         {
-            //GridPeliculas.DataSource = peliculas.Where(p => p.titulo.ToUpper().Contains(TxtBuscar.Text.ToUpper()))
-            //    .ToList();
+            GridCapacitaciones.DataSource = _capacitaciones.Where(p => p.Nombre.ToUpper().Contains(TxtBuscar.Text.ToUpper()))
+                .ToList();
         }
 
         private void TxtBuscar_TextChanged(object sender, EventArgs e)
