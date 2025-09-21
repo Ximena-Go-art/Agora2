@@ -44,9 +44,10 @@ namespace Service.Services
             return response.IsSuccessStatusCode;
         }
 
+       
         public async Task<List<T>?> GetAllAsync(string? filtro="")
         {
-            var response = await _httpClient.GetAsync(_endpoint);
+            var response = await _httpClient.GetAsync($"{_endpoint}?filter={filtro}");//nos permite mandar un texto de filtro
             var content = await response.Content.ReadAsStringAsync();
             if (!response.IsSuccessStatusCode)
             {

@@ -174,15 +174,14 @@ namespace Desktop.Views
             }
         }
 
-        private void BtnBuscar_Click(object sender, EventArgs e)
+        private async void BtnBuscar_Click(object sender, EventArgs e)
         {
-            GridCapacitaciones.DataSource = _capacitaciones.Where(p => p.Nombre.ToUpper().Contains(TxtBuscar.Text.ToUpper()))
-                .ToList();
+            GridCapacitaciones.DataSource = await _capacitacionService.GetAllAsync(TxtBuscar.Text);
         }
 
         private void TxtBuscar_TextChanged(object sender, EventArgs e)
         {
-            BtnBuscar.PerformClick();// Llamar al evento de búsqueda al cambiar el texto
+           // BtnBuscar.PerformClick();// Llamar al evento de búsqueda al cambiar el texto
         }
 
         private void TimerStatusBar_Tick(object sender, EventArgs e)
