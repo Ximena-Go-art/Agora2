@@ -27,13 +27,13 @@ namespace WebBlazor.Services
 
         public async Task<string> createUserWithEmailAndPassword(string email, string password, string displayName)
         {
-            var userId = await _jsRuntime.InvokeAsync<string>("firebaseAuth.createUserWithEmailAndPassword", email, password, displayName);
-            if (userId != null)
+            var user = await _jsRuntime.InvokeAsync<string>("firebaseAuth.createUserWithEmailAndPassword", email, password, displayName);
+            if (user != null)
             {
-                await _jsRuntime.InvokeVoidAsync("localStorageHelper.setItem", UserIdKey, userId);
+                await _jsRuntime.InvokeVoidAsync("localStorageHelper.setItem", UserIdKey, user);
                 OnChangeLogin?.Invoke();
             }
-            return userId;
+            return user;
         }
 
         public async Task SignOut()
