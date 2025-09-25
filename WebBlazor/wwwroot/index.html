@@ -64,15 +64,17 @@
                     user.updateProfile({
                         displayName: displayName
                     });
+
+
+                    //Enviar correo de verificación
+                    user.sendEmailVerification()
+                        .then(() => {
+                            console.log('Correo de verificación enviado.');
+                        })
+                        .catch((error) => {
+                            console.error('Error al enviar el correo de verificación:', error);
+                        });
                     return userCredential.user.uid;
-                    // Enviar correo de verificación
-                    //user.sendEmailVerification()
-                    //    .then(() => {
-                    //        console.log('Correo de verificación enviado.');
-                    //    })
-                    //    .catch((error) => {
-                    //        console.error('Error al enviar el correo de verificación:', error);
-                    //    });
 
 
 
