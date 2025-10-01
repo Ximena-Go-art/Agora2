@@ -6,20 +6,21 @@ namespace WebBlazor.Services
     public class FirebaseAuthService
     {
         private readonly IJSRuntime _jsRuntime;
-        private const string UserIdKey = "UsuarioDeÁgora"; //almacena el Login
         public event Action OnChangeLogin;
+        public FirebaseUser CurrentUser { get; set; }
+
 
         public FirebaseAuthService(IJSRuntime jsRuntime)
         {
             _jsRuntime = jsRuntime;
         }
 
-        public async Task<FirebaseUser?> SignInWithEmailPassword(string email, string password)
+        public async Task<FirebaseUser?> SignInWithEmailPassword(string email, string password, bool rememberPasword)
         {
-            var user = await _jsRuntime.InvokeAsync<FirebaseUser?>("firebaseAuth.signInWithEmailPassword", email, password);
+            var user = await _jsRuntime.InvokeAsync<FirebaseUser?>("firebaseAuth.signInWithEmailPassword", email, password, rememberPasword);
             if (user != null)
             {
-                await _jsRuntime.InvokeVoidAsync("localStorageHelper.setItem", UserIdKey, user.Uid);
+                CurrentUser = user;
                 OnChangeLogin?.Invoke();
             }
             return user;
@@ -30,7 +31,6 @@ namespace WebBlazor.Services
             var user = await _jsRuntime.InvokeAsync<string>("firebaseAuth.createUserWithEmailAndPassword", email, password, displayName);
             if (user != null)
             {
-                await _jsRuntime.InvokeVoidAsync("localStorageHelper.setItem", UserIdKey, user);
                 OnChangeLogin?.Invoke();
             }
             return user;
@@ -39,19 +39,29 @@ namespace WebBlazor.Services
         public async Task SignOut()
         {
             await _jsRuntime.InvokeVoidAsync("firebaseAuth.signOut");
-            await _jsRuntime.InvokeVoidAsync("localStorageHelper.removeItem", UserIdKey);
+            CurrentUser = null;
             OnChangeLogin?.Invoke();
         }
 
-        public async Task<string> GetUserId()
+        public async Task<FirebaseUser?> GetUserFirebase()
         {
-            return await _jsRuntime.InvokeAsync<string>("localStorageHelper.getItem", UserIdKey);
+            var userFirebase = await _jsRuntime.InvokeAsync<FirebaseUser>("firebaseAuth.getUserFirebase");
+            CurrentUser = userFirebase;
+            return userFirebase;
         }
 
         public async Task<bool> IsUserAuthenticated()
         {
-            var userId = await GetUserId();
-            return !string.IsNullOrEmpty(userId);
+            var user = await GetUserFirebase();
+            return user!=null;
+        }
+
+        public async Task<FirebaseUser?> LoginWithGoogle()
+        {
+            var userFirebase = await _jsRuntime.InvokeAsync<FirebaseUser>("firebaseAuth.loginWithGoogle");
+            CurrentUser = userFirebase;
+            OnChangeLogin?.Invoke();
+            return userFirebase;
         }
     }
 }
