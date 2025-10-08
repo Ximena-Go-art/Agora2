@@ -13,20 +13,35 @@ namespace MovilApp.ViewModels
     public partial class AgoraShellViewModel : ObservableObject
     {
         [ObservableProperty]
-        private bool userIsLogout = true;
+        private bool userIsLogged = false;
 
         public IRelayCommand LogoutCommand { get; }
-        public AgoraShellViewModel()
+        public AgoraShellViewModel()//metodo que se llama igual que la clase (definir)
         {
                 LogoutCommand = new RelayCommand(OnLogout);
+            SetLoginState (false);//inicialmente no esta logeado
+        }
+        public void SetLoginState(bool isLoggedIn)
+        {
+            if (Application.Current?.MainPage is AgoraShell shell)
+            {
+                if (isLoggedIn)
+                    shell.FlyoutBehavior = FlyoutBehavior.Flyout;
+                else
+                    shell.FlyoutBehavior = FlyoutBehavior.Disabled;
+
+                userIsLogged = isLoggedIn;
+                if (isLoggedIn)
+                    shell.GoToAsync("//MainPage");  // Cambio a MainPage (pantalla de inicio)
+                else
+                    shell.GoToAsync("//Login");
             }
 
-            private void OnLogout()
+        }
+        private void OnLogout()
             {
-                userIsLogout = true;
-                var agoraShell = (AgoraShell)App.Current.MainPage;
-                agoraShell.DisableAppAfterLogin();
-            }
+                SetLoginState(false);
+        }
         
     }
 }

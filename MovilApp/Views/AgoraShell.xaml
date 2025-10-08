@@ -8,7 +8,7 @@
     xmlns:commons="clr-namespace:MovilApp.Views"
     xmlns:contentviews="clr-namespace:MovilApp.ContentViews"
     xmlns:viewmodels="clr-namespace:MovilApp.ViewModels"
-    xmlns:view="clr-namespace:MovilApp.Views.Capacitaciones"
+    xmlns:views="clr-namespace:MovilApp.Views.Capacitaciones"
     FlyoutBehavior="Disabled"
     Title ="ÀgoraApp">
 
@@ -24,8 +24,15 @@
         <contentviews:FlyoutFooter />
     </Shell.FlyoutFooter>
 
+    <ShellContent
+    Title="Iniciar sesión"
+    ContentTemplate="{DataTemplate login:LoginView}"
+    Route="Login" 
+    IsVisible="{Binding UserIsLogout}"
+        FlyoutItemIsVisible="False"/>
+
     <FlyoutItem Route="nuestra_app" 
-        FlyoutDisplayOptions="AsMultipleItems" x:Name="FlyoutItemsPrincipal" >
+        FlyoutDisplayOptions="AsMultipleItems">
         <ShellContent
             Title="Home"
             ContentTemplate="{DataTemplate local:MainPage}"
@@ -49,17 +56,13 @@
     <FlyoutItem Title="📖 Buscar Capacitaciones" Icon="search.png">
         <ShellContent
             Title="Buscar Capacitaciones"
-            ContentTemplate="{DataTemplate view:CapacitacionesView}"
+            ContentTemplate="{DataTemplate views:CapacitacionesView}"
             Route="BuscarCapacitaciones" />
     </FlyoutItem>
     <MenuItem Text="Cerrar sesión"
       Command="{Binding LogoutCommand}"
       IconImageSource="random.png"/>
 
-    <ShellContent
-        Title="Iniciar sesión"
-        ContentTemplate="{DataTemplate login:LoginView}"
-        Route="Login" 
-        IsVisible="{Binding UserIsLogout}"/>
+    
 
 </Shell>
