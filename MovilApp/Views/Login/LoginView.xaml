@@ -58,6 +58,7 @@
                             Grid.ColumnSpan="2"
                             ></Button>
             </Grid>
-            </VerticalStackLayout>
+            <ActivityIndicator IsRunning="{Binding EstaDescargando}"/>
+        </VerticalStackLayout>
         </ScrollView>
     </ContentPage>

@@ -12,9 +12,9 @@ namespace Service.Models
         public int Id { get; set; }
         public string Nombre { get; set; } = string.Empty;
         public string Apellido { get; set; } = string.Empty;
-        public int Dni { get; set; }
+        public string Dni { get; set; }
         public string Email { get; set; } = string.Empty;
-        public TipoUsuarioEnum TipoUsuario { get; set; } = TipoUsuarioEnum.Estudiante;
+        public TipoUsuarioEnum TipoUsuario { get; set; } = TipoUsuarioEnum.Asistente;
         public DateTime DeleteDate { get; set; } = DateTime.MinValue;
         public bool IsDeleted { get; set; } = false;
 
