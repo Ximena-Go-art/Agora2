@@ -13,7 +13,7 @@
                 <!-- Botón volver -->
                 <Button Text="←"
                  Command="{Binding VolverCommand}"
-                 BackgroundColor="Transparent"
+                 BackgroundColor="BlueViolet"
                  TextColor="White"
                  FontSize="24"
                  HorizontalOptions="Start"
