@@ -33,11 +33,11 @@ namespace Backend.DataContext
             //cargamos los datos iniciales de usuarios
 
                 modelBuilder.Entity<Usuario>().HasData(
-    new Usuario { Id = 1, Nombre = "Juan", Apellido = "Pérez", Dni = 30111222, Email = "juan.perez@example.com", TipoUsuario = TipoUsuarioEnum.Asistente, DeleteDate = DateTime.MinValue, IsDeleted = false },
-    new Usuario { Id = 2, Nombre = "María", Apellido = "Gómez", Dni = 28999888, Email = "maria.gomez@example.com", TipoUsuario = TipoUsuarioEnum.Docente, DeleteDate = DateTime.MinValue, IsDeleted = false },
-    new Usuario { Id = 3, Nombre = "Carlos", Apellido = "Fernández", Dni = 32555111, Email = "carlos.fernandez@example.com", TipoUsuario = TipoUsuarioEnum.Administrador, DeleteDate = DateTime.MinValue, IsDeleted = false },
-    new Usuario { Id = 4, Nombre = "Lucía", Apellido = "Martínez", Dni = 33444666, Email = "lucia.martinez@example.com", TipoUsuario = TipoUsuarioEnum.Asistente, DeleteDate = DateTime.MinValue, IsDeleted = false },
-    new Usuario { Id = 5, Nombre = "Diego", Apellido = "López", Dni = 31222999, Email = "diego.lopez@example.com", TipoUsuario = TipoUsuarioEnum.Docente, DeleteDate = DateTime.MinValue, IsDeleted = false }
+    new Usuario { Id = 1, Nombre = "Juan", Apellido = "Pérez", Dni = "30111222", Email = "juan.perez@example.com", TipoUsuario = TipoUsuarioEnum.Asistente, DeleteDate = DateTime.MinValue, IsDeleted = false },
+    new Usuario { Id = 2, Nombre = "María", Apellido = "Gómez", Dni = "28999888", Email = "maria.gomez@example.com", TipoUsuario = TipoUsuarioEnum.Docente, DeleteDate = DateTime.MinValue, IsDeleted = false },
+    new Usuario { Id = 3, Nombre = "Carlos", Apellido = "Fernández", Dni = "32555111", Email = "carlos.fernandez@example.com", TipoUsuario = TipoUsuarioEnum.Administrador, DeleteDate = DateTime.MinValue, IsDeleted = false },
+    new Usuario { Id = 4, Nombre = "Lucía", Apellido = "Martínez", Dni = "33444666", Email = "lucia.martinez@example.com", TipoUsuario = TipoUsuarioEnum.Asistente, DeleteDate = DateTime.MinValue, IsDeleted = false },
+    new Usuario { Id = 5, Nombre = "Diego", Apellido = "López", Dni = "31222999", Email = "diego.lopez@example.com", TipoUsuario = TipoUsuarioEnum.Docente, DeleteDate = DateTime.MinValue, IsDeleted = false }
 
                 );
 
