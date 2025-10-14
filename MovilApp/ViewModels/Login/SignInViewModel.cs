@@ -70,7 +70,7 @@ namespace MovilApp.ViewModels.Login
         {
             if (Application.Current?.MainPage is AgoraShell shell)
             {
-                await shell.GoToAsync($"//Login");
+                await shell.GoToAsync("//Login");
             }
 
         }
