@@ -112,15 +112,15 @@ namespace Backend.Controllers
         }
         // RESTORE: api/Capacitaciones/restore/5  ESTE
         [HttpPut("restore/{id}")]
-        public async Task<IActionResult> RestoreCapacitacion(int id)
+        public async Task<IActionResult> RestoreTipoInscripcion(int id)
         {
-            var capacitacion = await _context.Capacitaciones.IgnoreQueryFilters().FirstOrDefaultAsync(c => c.Id.Equals(id));
-            if (capacitacion == null)
+            var tipoInscripcion = await _context.TipoInscripciones.IgnoreQueryFilters().FirstOrDefaultAsync(c => c.Id.Equals(id));
+            if (tipoInscripcion == null)
             {
                 return NotFound();
             }
-            capacitacion.IsDeleted = false;//Soft Restore
-            _context.Capacitaciones.Update(capacitacion);
+            tipoInscripcion.IsDeleted = false;//Soft Restore
+            _context.TipoInscripciones.Update(tipoInscripcion);
             await _context.SaveChangesAsync();
 
             return NoContent();
