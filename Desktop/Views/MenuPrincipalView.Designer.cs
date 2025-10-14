@@ -32,13 +32,14 @@
             MenuPrincipal = new MenuStrip();
             SubMenuPrincipal = new FontAwesome.Sharp.IconMenuItem();
             SubMenuUsuarios = new ToolStripMenuItem();
+            SubMenuCapacitaciones = new ToolStripMenuItem();
             SubMenuSalir = new ToolStripMenuItem();
             SubMenuSalirDelSistema = new ToolStripMenuItem();
             toolTip1 = new ToolTip(components);
             toolTip2 = new ToolTip(components);
             toolTip3 = new ToolTip(components);
             toolStrip1 = new ToolStrip();
-            SubMenuCapacitaciones = new ToolStripMenuItem();
+            SubMenuTiposDeInscripcion = new ToolStripMenuItem();
             MenuPrincipal.SuspendLayout();
             SuspendLayout();
             // 
@@ -54,7 +55,7 @@
             // 
             // SubMenuPrincipal
             // 
-            SubMenuPrincipal.DropDownItems.AddRange(new ToolStripItem[] { SubMenuUsuarios, SubMenuCapacitaciones });
+            SubMenuPrincipal.DropDownItems.AddRange(new ToolStripItem[] { SubMenuUsuarios, SubMenuCapacitaciones, SubMenuTiposDeInscripcion });
             SubMenuPrincipal.IconChar = FontAwesome.Sharp.IconChar.HomeLg;
             SubMenuPrincipal.IconColor = Color.Black;
             SubMenuPrincipal.IconFont = FontAwesome.Sharp.IconFont.Auto;
@@ -65,9 +66,16 @@
             // SubMenuUsuarios
             // 
             SubMenuUsuarios.Name = "SubMenuUsuarios";
-            SubMenuUsuarios.Size = new Size(224, 26);
+            SubMenuUsuarios.Size = new Size(238, 26);
             SubMenuUsuarios.Text = "Usuarios";
             SubMenuUsuarios.Click += SubMenuUsuarios_Click;
+            // 
+            // SubMenuCapacitaciones
+            // 
+            SubMenuCapacitaciones.Name = "SubMenuCapacitaciones";
+            SubMenuCapacitaciones.Size = new Size(238, 26);
+            SubMenuCapacitaciones.Text = "Capacitaciones";
+            SubMenuCapacitaciones.Click += SubMenuCapacitaciones_Click;
             // 
             // SubMenuSalir
             // 
@@ -92,12 +100,12 @@
             toolStrip1.TabIndex = 2;
             toolStrip1.Text = "toolStrip1";
             // 
-            // SubMenuCapacitaciones
+            // SubMenuTiposDeInscripcion
             // 
-            SubMenuCapacitaciones.Name = "SubMenuCapacitaciones";
-            SubMenuCapacitaciones.Size = new Size(224, 26);
-            SubMenuCapacitaciones.Text = "Capacitaciones";
-            SubMenuCapacitaciones.Click += SubMenuCapacitaciones_Click;
+            SubMenuTiposDeInscripcion.Name = "SubMenuTiposDeInscripcion";
+            SubMenuTiposDeInscripcion.Size = new Size(238, 26);
+            SubMenuTiposDeInscripcion.Text = "Tipos de Inscripciónes";
+            SubMenuTiposDeInscripcion.Click += SubMenuTiposDeInscripcion_Click;
             // 
             // MenuPrincipalView
             // 
@@ -129,5 +137,6 @@
         private ToolStripMenuItem SubMenuSalirDelSistema;
         private ToolStripMenuItem SubMenuUsuarios;
         private ToolStripMenuItem SubMenuCapacitaciones;
+        private ToolStripMenuItem SubMenuTiposDeInscripcion;
     }
 }

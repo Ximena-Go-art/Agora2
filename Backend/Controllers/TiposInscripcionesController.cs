@@ -23,9 +23,10 @@ namespace Backend.Controllers
 
         // GET: api/TipoInscripciones
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<TipoInscripcion>>> GetTipoInscripciones()
+        public async Task<ActionResult<IEnumerable<TipoInscripcion>>> GetTipoInscripciones([FromQuery] string? filter = "")
         {
-            return await _context.TipoInscripciones.ToListAsync();
+            return await _context.TipoInscripciones
+                .Where(c => c.Nombre.Contains(filter)).ToListAsync();
         }
 
         // GET: api/TipoInscripciones/5
@@ -45,9 +46,9 @@ namespace Backend.Controllers
         // GET: api/Capacitaciones/deleteds  ESTE
         [HttpGet("deleteds/")]
 
-        public async Task<ActionResult<IEnumerable<Capacitacion>>> GetCapacitacionesDeleteds()
+        public async Task<ActionResult<IEnumerable<TipoInscripcion>>> GetTipoInscripcionDeleteds()
         {
-            return await _context.Capacitaciones.IgnoreQueryFilters()
+            return await _context.TipoInscripciones.IgnoreQueryFilters()
                 .Where(c => c.IsDeleted)
                 .ToListAsync();
         }
