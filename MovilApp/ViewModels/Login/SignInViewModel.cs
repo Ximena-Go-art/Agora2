@@ -104,7 +104,7 @@ namespace MovilApp.ViewModels.Login
                     await Application.Current.MainPage.DisplayAlert("Registrarse", "Cuenta creada!", "Ok");
                     if (Application.Current?.MainPage is AgoraShell shell)
                     {
-                        await shell.GoToAsync($"//Login");
+                        await shell.GoToAsync("//Login");
                     }
                 }
                 catch (FirebaseAuthException error) // Use alias here 
