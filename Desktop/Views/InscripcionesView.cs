@@ -15,6 +15,7 @@ namespace Desktop.Views
     public partial class InscripcionesView : Form
     {
         GenericServices<Capacitacion> _capacitacionservice = new();
+        InscipcionService _inscripcionService = new();
         public InscripcionesView()
         {
             InitializeComponent();
@@ -25,12 +26,21 @@ namespace Desktop.Views
         {
             //cargamos lac capacitaciones en el combo
             var capacitacion = await _capacitacionservice.GetAllAsync();
-            CmbCapacitaciones.DataSource = capacitacion.Where(c=> c.InscripcionAbierta).ToList();
+            CmbCapacitaciones.DataSource = capacitacion.Where(c => c.InscripcionAbierta).ToList();
             CmbCapacitaciones.DisplayMember = "Nombre";
             CmbCapacitaciones.ValueMember = "Id";
 
             //cargamos las inscripciones de la capacitacion seleccionada
 
+        }
+
+        private async Task CmbCapacitaciones_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //Controlamos que no sea nulo y haya una capacitacion seleccionada
+            if (CmbCapacitaciones.SelectedItem is Capacitacion selectedCapacitacion)
+            {
+                GridInscripciones.DataSource = await _inscripcionService.GetInscriptosAsync(selectedCapacitacion.Id);
+            }
         }
     }
 }

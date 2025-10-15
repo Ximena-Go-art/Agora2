@@ -66,6 +66,7 @@
             CmbCapacitaciones.Name = "CmbCapacitaciones";
             CmbCapacitaciones.Size = new Size(488, 36);
             CmbCapacitaciones.TabIndex = 9;
+            CmbCapacitaciones.SelectedIndexChanged += CmbCapacitaciones_SelectedIndexChanged;
             // 
             // Capacitacion
             // 
