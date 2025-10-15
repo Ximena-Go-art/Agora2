@@ -34,5 +34,12 @@ namespace Desktop
             tipoInscripcionView.MdiParent = this;
             tipoInscripcionView.Show();
         }
+
+        private void SubMenuinscripciones_Click(object sender, EventArgs e)
+        {
+            var inscripcionView = new InscripcionesView();
+            inscripcionView.MdiParent = this;
+            inscripcionView.Show();
+        }
     }
 }
