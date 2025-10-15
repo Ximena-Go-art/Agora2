@@ -23,10 +23,14 @@ namespace Desktop.Views
 
         private async Task GetAlldata()
         {
+            //cargamos lac capacitaciones en el combo
             var capacitacion = await _capacitacionservice.GetAllAsync();
             CmbCapacitaciones.DataSource = capacitacion.Where(c=> c.InscripcionAbierta).ToList();
             CmbCapacitaciones.DisplayMember = "Nombre";
             CmbCapacitaciones.ValueMember = "Id";
+
+            //cargamos las inscripciones de la capacitacion seleccionada
+
         }
     }
 }

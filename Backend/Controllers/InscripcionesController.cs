@@ -25,10 +25,21 @@ namespace Backend.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Inscripcion>>> GetInscripciones()
         {
-            return await _context.Inscripciones.ToListAsync();
+            return await _context.Inscripciones.Include(i => i.Capacitacion).Include(i => i.TipoInscripcion)
+                .Include(i => i.Usuario).ToListAsync();
         }
 
-        // GET: api/Inscripciones/5
+        
+        [HttpGet("inscriptos/{id}")]
+        public async Task<ActionResult<IEnumerable<Inscripcion>>> GetInscriptos(int id)
+        {
+            return await _context.Inscripciones
+                .Include(i => i.Capacitacion)
+                .Include(i => i.TipoInscripcion)
+                .Include(i => i.Usuario)
+                .Where(i => i.CapacitacionId == id)
+                .ToListAsync();
+        }
         [HttpGet("{id}")]
         public async Task<ActionResult<Inscripcion>> GetInscripcion(int id)
         {
@@ -41,13 +52,12 @@ namespace Backend.Controllers
 
             return inscripcion;
         }
-
         // GET: api/Capacitaciones/deleteds  ESTE
         [HttpGet("deleteds/")]
 
-        public async Task<ActionResult<IEnumerable<Capacitacion>>> GetCapacitacionesDeleteds()
+        public async Task<ActionResult<IEnumerable<Inscripcion>>> GetCapacitacionesDeleteds()
         {
-            return await _context.Capacitaciones.IgnoreQueryFilters()
+            return await _context.Inscripciones.IgnoreQueryFilters()
                 .Where(c => c.IsDeleted)
                 .ToListAsync();
         }
@@ -112,15 +122,15 @@ namespace Backend.Controllers
         }
         // RESTORE: api/Capacitaciones/restore/5  ESTE
         [HttpPut("restore/{id}")]
-        public async Task<IActionResult> RestoreCapacitacion(int id)
+        public async Task<IActionResult> RestoreInscripciones (int id)
         {
-            var capacitacion = await _context.Capacitaciones.IgnoreQueryFilters().FirstOrDefaultAsync(c => c.Id.Equals(id));
-            if (capacitacion == null)
+            var inscripciones = await _context.Inscripciones.IgnoreQueryFilters().FirstOrDefaultAsync(c => c.Id.Equals(id));
+            if (inscripciones == null)
             {
                 return NotFound();
             }
-            capacitacion.IsDeleted = false;//Soft Restore
-            _context.Capacitaciones.Update(capacitacion);
+            inscripciones.IsDeleted = false;//Soft Restore
+            _context.Inscripciones.Update(inscripciones);
             await _context.SaveChangesAsync();
 
             return NoContent();
