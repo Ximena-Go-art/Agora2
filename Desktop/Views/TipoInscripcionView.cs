@@ -185,8 +185,8 @@ namespace Desktop.Views
 
             if (GridCapacitaciones.RowCount > 0 && GridCapacitaciones.SelectedRows.Count > 0)
             {
-                Capacitacion entitySelected = (Capacitacion)GridCapacitaciones.SelectedRows[0].DataBoundItem;
-                var respuesta = MessageBox.Show($"¿Seguro que desea restaurar la capacitacion {entitySelected.Nombre}?", "Confirmar Restauración", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                TipoInscripcion entitySelected = (TipoInscripcion)GridCapacitaciones.SelectedRows[0].DataBoundItem;
+                var respuesta = MessageBox.Show($"¿Seguro que desea restaurar el tipo de inscripcion {entitySelected.Nombre}?", "Confirmar Restauración", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (respuesta == DialogResult.Yes)//en lo posible poner dentro de un try/catch
                 {
                     if (await _tipoInscripcionService.RestoreAsync(entitySelected.Id))
