@@ -34,7 +34,7 @@ namespace Desktop.Views
 
         }
 
-        private async Task CmbCapacitaciones_SelectedIndexChanged(object sender, EventArgs e)
+        private async void CmbCapacitaciones_SelectedIndexChanged(object sender, EventArgs e)
         {
             //Controlamos que no sea nulo y haya una capacitacion seleccionada
             if (CmbCapacitaciones.SelectedItem is Capacitacion selectedCapacitacion)
