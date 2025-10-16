@@ -25,8 +25,11 @@ namespace Backend.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Inscripcion>>> GetInscripciones()
         {
-            return await _context.Inscripciones.Include(i => i.Capacitacion).Include(i => i.TipoInscripcion)
-                .Include(i => i.Usuario).ToListAsync();
+            return await _context.Inscripciones.
+                Include(i => i.Capacitacion).
+                Include(i => i.TipoInscripcion)
+                .Include(i => i.Usuario).
+                ToListAsync();
         }
 
         
